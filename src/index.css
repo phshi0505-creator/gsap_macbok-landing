@@ -185,6 +185,11 @@ body {
   #showcase {
     @apply relative;
 
+.content{
+      top: 12vh;            /* increase this to push down */
+    }
+
+
     .media {
       @apply relative lg:overflow-hidden;
 

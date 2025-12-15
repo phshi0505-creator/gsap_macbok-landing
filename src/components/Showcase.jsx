@@ -1,35 +1,64 @@
-import {useMediaQuery} from "react-responsive";
-import {useGSAP} from "@gsap/react";
-import gsap from 'gsap';
+import { useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Showcase = () => {
-  const isTablet = useMediaQuery({ query: '(max-width: 1024px)'});
+  const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
+  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
 
-  useGSAP(() => {
-    if(!isTablet) {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#showcase',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-          pin: true,
+  useGSAP(
+      () => {
+        // kill any old triggers/timelines created in dev re-renders
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+
+        // if tablet, ensure content is visible (no scrolltrigger)
+        if (isTablet) {
+          gsap.set(".content", { opacity: 1, y: 0 });
+          return;
         }
-      });
 
-      timeline
-          .to('.mask img', {
-            transform: 'scale(1.1)'
-          }).to('.content', { opacity: 1, y: 0, ease: 'power1.in' });
-    }
-  }, [isTablet])
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.to(".mask img", { scale: 1.1 })
+            .to(".content", { opacity: 1, y: 0, ease: "power1.in" }, 0);
+
+        // mimic what resize does: force a measurement after setup
+        ScrollTrigger.refresh();
+      },
+      { scope: sectionRef, dependencies: [isTablet] }
+  );
 
   return (
-      <section id="showcase">
+      <section id="showcase" ref={sectionRef}>
         <div className="media">
-          <video src="/videos/game.mp4" loop muted autoPlay playsInline />
+
+          <video
+              ref={videoRef}
+              src="/videos/game.mp4"
+              loop
+              muted
+              autoPlay
+              playsInline
+              preload="auto"
+              onLoadedMetadata={() => ScrollTrigger.refresh()}
+              onCanPlay={() => ScrollTrigger.refresh()}
+          />
           <div className="mask">
-            <img src="/mask-logo.svg" />
+            <img src="/mask-logo.svg" alt="mask" />
           </div>
         </div>
 
