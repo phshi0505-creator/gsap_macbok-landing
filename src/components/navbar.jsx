@@ -9,9 +9,9 @@ const navbar = () => {
 
 
             <ul>
-                {navLinks.map((link)=> (
-                    <li key={link}>
-                        <a href="{link.label">{link.label}</a>
+                {navLinks.map(({label})=> (
+                    <li key={label}>
+                        <a href={label}>{label}</a>
                     </li>
                 ))}
             </ul>

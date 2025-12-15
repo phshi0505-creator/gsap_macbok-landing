@@ -2,7 +2,7 @@ import React from 'react';
 import {Environment, Lightformer} from "@react-three/drei";
 const StudioLights = () => {
   return (
-    <group name="lights">StudioLights
+    <group name="lights">
       <Environment resolution={256}>
           <group>
               <Lightformer
