@@ -55,12 +55,12 @@ useGSAP(()=>{
 
     return (
         <>
-            <PresentationControls { ... controlsConfig}>
+            <PresentationControls {... controlsConfig}>
                 <group ref={largeMacbookRef}>
                     <MacbookModel16 scale={isMobile ? 0.05 : 0.08} />
                 </group>
             </PresentationControls>
-            <PresentationControls { ... controlsConfig}>
+            <PresentationControls {... controlsConfig}>
                 <group ref={smallMacbookRef}>
                     <MacbookModel14 scale={isMobile ? 0.03 : 0.06} />
                 </group>

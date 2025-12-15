@@ -17,7 +17,7 @@ const App = () => {
         <Showcase />
 
     </main>
-  );
-};
+  )
+}
 
 export default App;

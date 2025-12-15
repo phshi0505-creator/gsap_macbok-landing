@@ -29,9 +29,10 @@ export default function MacbookModel16(props) {
                     }
                 }
             })
-        },[color]) ,
+        },[color]),
 
-        <group {...props} dispose={null}>
+
+      <group {...props} dispose={null}>
         <mesh geometry={nodes.Object_10.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
         <mesh geometry={nodes.Object_16.geometry} material={materials.zhGRTuGrQoJflBD} rotation={[Math.PI / 2, 0, 0]} />
         <mesh geometry={nodes.Object_20.geometry} material={materials.PaletteMaterial002} rotation={[Math.PI / 2, 0, 0]} />
