@@ -186,7 +186,7 @@ body {
     @apply relative;
 
 .content{
-      top: 12vh;            /* increase this to push down */
+      top: 11vh;            /* increase this to push down */
     }
 
 
