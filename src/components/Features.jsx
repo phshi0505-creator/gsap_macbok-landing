@@ -107,7 +107,7 @@ const Features = () => {
                 {feature.text}
               </p>
             </div>
-        ))}h
+        ))}
 
       </div>
     </section>
