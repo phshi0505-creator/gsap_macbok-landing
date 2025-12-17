@@ -19,7 +19,7 @@ export default function MacbookModel16(props) {
     const { nodes, materials,scene } = useGLTF('/models/macbook-16-transformed.glb')
 
     const texture = useTexture('/screen.png');
-    return (
+
 
         useEffect(()=>{
             scene.traverse((child)=>{
@@ -29,9 +29,8 @@ export default function MacbookModel16(props) {
                     }
                 }
             })
-        },[color]),
-
-
+        },[color,scene]);
+        return(
       <group {...props} dispose={null}>
         <mesh geometry={nodes.Object_10.geometry} material={materials.PaletteMaterial001} rotation={[Math.PI / 2, 0, 0]} />
         <mesh geometry={nodes.Object_16.geometry} material={materials.zhGRTuGrQoJflBD} rotation={[Math.PI / 2, 0, 0]} />
